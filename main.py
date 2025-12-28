@@ -55,21 +55,12 @@ def main():
         print(file)
         os.makedirs(path, exist_ok=True)
 
-        # wave_bytes = synthesizer.tts(textQ, style_id)  # 音声合成を行う
-
-        q = AudioSegment.from_file(io.BytesIO(synthesizer.tts(textQ, style_id)), format="wav")
-        a = AudioSegment.from_file(io.BytesIO(synthesizer.tts(textA, style_id)), format="wav")
-        # with open("Q.wav", "wb") as f:
-        #     f.write(wave_bytes)  # ファイルに書き出す
-        # wave_bytes = synthesizer.tts(textA, style_id)  # 音声合成を行う
-        # with open("A.wav", "wb") as f:
-        #     f.write(wave_bytes)  # ファイルに書き出す
-        # q = AudioSegment.from_file(
-        #     io.BytesIO(synthesizer.tts(textQ, style_id)), format="wav"
-        # )
-        # a = AudioSegment.from_file(
-        #     io.BytesIO(synthesizer.tts(textA, style_id)), format="wav"
-        # )
+        q = AudioSegment.from_file(
+            io.BytesIO(synthesizer.tts(textQ, style_id)), format="wav"
+        )
+        a = AudioSegment.from_file(
+            io.BytesIO(synthesizer.tts(textA, style_id)), format="wav"
+        )
 
         out = s1 + q + s5 + a + s1
         out.export(file, format=fmt)
@@ -85,7 +76,6 @@ def main():
         tags["album"] = f"{path}"
         tags["tracknumber"] = f"{row[2].zfill(2)}"
         tags.save()
-
 
 
 if __name__ == "__main__":

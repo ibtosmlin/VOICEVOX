@@ -12,3 +12,4 @@ wheels/
 # User
 .downloads
 voicevox_core
+*.wav
